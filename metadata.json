@@ -1,0 +1,6 @@
+{
+  "name": "ELECTRO_FENNASSA",
+  "description": "Plateforme e-commerce professionnelle pour Électroménager et Ameublement à Taourirt, Maroc.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
