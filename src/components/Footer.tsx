@@ -45,8 +45,8 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-bold text-white text-sm">Garantie 100% Officielle</h4>
-              <p className="text-xs text-slate-400 mt-0.5">Tous nos produits sont garantis constructeur de 1 à 5 ans.</p>
+              <h4 className="font-bold text-white text-sm">Garantie 1 an Officielle</h4>
+              <p className="text-xs text-slate-400 mt-0.5">Tous nos produits sont accompagnés d'une garantie constructeur de 1 an.</p>
             </div>
           </div>
 
@@ -128,6 +128,15 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
             </li>
             <li>
               <button onClick={() => setCurrentView('faq')} className="hover:text-red-400 transition-colors">Foire Aux Questions (FAQ)</button>
+            </li>
+            <li className="pt-2 border-t border-slate-800">
+              <button 
+                onClick={() => setCurrentView('admin')} 
+                className="bg-red-600/20 hover:bg-red-600/30 text-red-400 border border-red-500/30 font-bold px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 w-full text-xs"
+              >
+                <ShieldCheck className="w-3.5 h-3.5 text-red-500" />
+                <span>Espace Administration</span>
+              </button>
             </li>
           </ul>
         </div>

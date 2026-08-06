@@ -47,8 +47,21 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('ef_products');
-    return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
+    const saved = localStorage.getItem('ef_products_v4');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        const existingIds = new Set(parsed.map((p: Product) => p.id));
+        const missing = INITIAL_PRODUCTS.filter(p => !existingIds.has(p.id));
+        if (missing.length > 0) {
+          return [...parsed, ...missing];
+        }
+        return parsed;
+      } catch (e) {
+        return INITIAL_PRODUCTS;
+      }
+    }
+    return INITIAL_PRODUCTS;
   });
 
   const [packs, setPacks] = useState<Pack[]>(() => {
@@ -85,7 +98,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [couponPercent, setCouponPercent] = useState<number>(0);
 
   useEffect(() => {
-    localStorage.setItem('ef_products', JSON.stringify(products));
+    localStorage.setItem('ef_products_v4', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {

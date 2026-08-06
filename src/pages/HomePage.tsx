@@ -156,7 +156,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 dark:text-white text-sm">Garantie 2 ans</h4>
+              <h4 className="font-bold text-slate-900 dark:text-white text-sm">Garantie 1 an</h4>
               <p className="text-xs text-slate-500 dark:text-slate-400">Support Constructeur Direct</p>
             </div>
           </div>

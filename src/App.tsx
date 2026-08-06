@@ -33,8 +33,35 @@ function AppContent() {
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  const handleQuickView = (product: Product) => {
+  // Sync product modal with URL query parameter ?product=id
+  React.useEffect(() => {
+    const handleUrlSync = () => {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('product') || params.get('p');
+      if (productId && products.length > 0) {
+        const found = products.find(p => p.id === productId || p.ref === productId);
+        if (found) {
+          setQuickViewProduct(found);
+        }
+      }
+    };
+
+    handleUrlSync();
+    window.addEventListener('popstate', handleUrlSync);
+    return () => window.removeEventListener('popstate', handleUrlSync);
+  }, [products]);
+
+  const handleQuickView = (product: Product | null) => {
     setQuickViewProduct(product);
+    const url = new URL(window.location.href);
+    if (product) {
+      url.searchParams.set('product', product.id);
+      window.history.pushState({ productId: product.id }, '', url.toString());
+    } else {
+      url.searchParams.delete('product');
+      url.searchParams.delete('p');
+      window.history.pushState({}, '', url.toString());
+    }
   };
 
   const handleCategorySelect = (categoryId: string) => {
@@ -149,7 +176,7 @@ function AppContent() {
       {/* Modals */}
       <ProductModal
         product={quickViewProduct}
-        onClose={() => setQuickViewProduct(null)}
+        onClose={() => handleQuickView(null)}
       />
 
       <LoginModal

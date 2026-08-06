@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, ShoppingBag, Eye, ShieldCheck, CheckCircle, MessageCircle } from 'lucide-react';
+import { Heart, ShoppingBag, Eye, ShieldCheck, CheckCircle, MessageCircle, Share2, Check } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 
@@ -17,8 +17,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const { addToCart, toggleWishlist, isInWishlist, storeContact } = useCart();
   const [hoveredImage, setHoveredImage] = useState(false);
   const [added, setAdded] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const inWishlist = isInWishlist(product.id);
+
+  const handleShareProduct = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const url = new URL(window.location.origin + window.location.pathname);
+    url.searchParams.set('product', product.id);
+    navigator.clipboard.writeText(url.toString());
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -84,18 +94,38 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </div>
 
-        {/* Wishlist Button */}
-        <button
-          onClick={handleToggleWishlist}
-          aria-label="Ajouter aux favoris"
-          className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all shadow-md ${
-            inWishlist
-              ? 'bg-rose-500 text-white'
-              : 'bg-white/80 dark:bg-slate-900/80 text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400'
-          }`}
-        >
-          <Heart className={`w-4 h-4 ${inWishlist ? 'fill-current' : ''}`} />
-        </button>
+        {/* Top Right Action Buttons (Wishlist & Share) */}
+        <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+          <button
+            onClick={handleShareProduct}
+            aria-label="Partager le lien du produit"
+            title={copied ? "Lien copié !" : "Copier le lien du produit"}
+            className={`p-2 rounded-full backdrop-blur-md transition-all shadow-md relative ${
+              copied
+                ? 'bg-emerald-600 text-white'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400'
+            }`}
+          >
+            {copied ? <Check className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
+            {copied && (
+              <span className="absolute -bottom-7 right-0 bg-slate-900 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow whitespace-nowrap">
+                Lien copié !
+              </span>
+            )}
+          </button>
+
+          <button
+            onClick={handleToggleWishlist}
+            aria-label="Ajouter aux favoris"
+            className={`p-2 rounded-full backdrop-blur-md transition-all shadow-md ${
+              inWishlist
+                ? 'bg-rose-500 text-white'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400'
+            }`}
+          >
+            <Heart className={`w-4 h-4 ${inWishlist ? 'fill-current' : ''}`} />
+          </button>
+        </div>
 
         {/* Quick View Button on Hover */}
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">

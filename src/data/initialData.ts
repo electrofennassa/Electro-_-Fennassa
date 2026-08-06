@@ -120,9 +120,11 @@ export const INITIAL_CATEGORIES: Category[] = [
 ];
 
 export const INITIAL_BRANDS: Brand[] = [
+  { id: 'daiko', name: 'Daiko' },
+  { id: 'whirlpool', name: 'Whirlpool' },
+  { id: 'dolidol', name: 'Dolidol' },
   { id: 'samsung', name: 'Samsung' },
   { id: 'lg', name: 'LG Electronics' },
-  { id: 'whirlpool', name: 'Whirlpool' },
   { id: 'bosch', name: 'Bosch' },
   { id: 'tcl', name: 'TCL' },
   { id: 'moulinex', name: 'Moulinex' },
@@ -455,6 +457,354 @@ export const INITIAL_PRODUCTS: Product[] = [
     },
     isFeatured: true,
     createdAt: '2026-08-04'
+  },
+  {
+    id: 'p-12',
+    name: 'Téléviseur Daiko 65" Google TV 5.0 4K UHD Frameless HDR10 Dolby (GLED65AI97DK)',
+    ref: 'TV-DK-65-GLED',
+    sku: 'EF-TV-012',
+    price: 4290,
+    originalPrice: 4990,
+    promo: true,
+    discountPercent: 14,
+    categoryId: 'televiseurs',
+    categoryName: 'Téléviseurs',
+    brand: 'Daiko',
+    description: 'Smart TV Daiko 65 pouces 4K Ultra HD sans bordure (Frameless) équipée du système Google TV 5.0. Image haute précision avec HDR10, HLG et son enveloppant Dolby Audio. Commande vocale Google Assistant intégrée.',
+    stock: 12,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80',
+      'https://images.unsplash.com/photo-1577979749830-f1d742b96791?w=800&q=80',
+      'https://images.unsplash.com/photo-1461151304267-38535e780c79?w=800&q=80'
+    ],
+    specs: {
+      'Taille écran': '65 pouces (165 cm)',
+      'Définition': '4K UHD (3840 x 2160)',
+      'Système': 'Google TV 5.0 avec Chromecast',
+      'Technologies': 'Frameless, HDR10, HLG, Dolby Audio',
+      'Connectivité': 'WiFi, Bluetooth, 3x HDMI, 2x USB'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-13',
+    name: 'Climatiseur Daiko Split Mural 12000 BTU Inverter Smart Wifi R410A (AC12QSLIM410BK)',
+    ref: 'CLIM-DK-12K-INV',
+    sku: 'EF-CL-013',
+    price: 3290,
+    originalPrice: 3790,
+    promo: true,
+    discountPercent: 13,
+    categoryId: 'climatiseurs',
+    categoryName: 'Climatiseurs',
+    brand: 'Daiko',
+    description: 'Climatiseur Split Mural Daiko 12000 BTU Inverter haute performance Chaud & Froid. Contrôlable à distance via Smart WiFi application smartphone. Design Slim élégant, fonctionnement ultra silencieux (42dB) et mode nuit économe.',
+    stock: 15,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1631545806062-8e7c1f810214?w=800&q=80',
+      'https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&q=80'
+    ],
+    specs: {
+      'Puissance': '12000 BTU (Refroidissement 12000 / Chauffage 12500)',
+      'Technologie': 'Inverter Chaud & Froid',
+      'Connectivité': 'Smart WiFi contrôlable par smartphone',
+      'Niveau Sonore': '42 dB Silencieux',
+      'Gaz Réfrigérant': 'R410A Écologique'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-14',
+    name: 'Lave-linge Daiko 8kg Automatique Inverter 1400 tr/min A+++ (WI948MX-98K)',
+    ref: 'LL-DK-8KG-INV',
+    sku: 'EF-LL-014',
+    price: 2890,
+    originalPrice: 3390,
+    promo: true,
+    discountPercent: 15,
+    categoryId: 'lave-linge',
+    categoryName: 'Lave-linge',
+    brand: 'Daiko',
+    description: 'Machine à laver automatique Daiko 8 kg à chargement frontal. Équipée d\'un moteur Inverter durable et économique classe A+++. 16 programmes de lavage dont lavage rapide 15min et soin des textiles délicats.',
+    stock: 10,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&q=80',
+      'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=80'
+    ],
+    specs: {
+      'Capacité': '8 Kg',
+      'Vitesse d\'essorage': '1400 tr/min',
+      'Moteur': 'Inverter haute économie d\'énergie',
+      'Classe Énergétique': 'A+++',
+      'Programmes': '16 Programmes intelligents'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-15',
+    name: 'Téléviseur Daiko 32" HD Smart Google TV Frameless Récepteur Intégré (32H93DK)',
+    ref: 'TV-DK-32-SMART',
+    sku: 'EF-TV-015',
+    price: 1390,
+    originalPrice: 1690,
+    promo: true,
+    discountPercent: 18,
+    categoryId: 'televiseurs',
+    categoryName: 'Téléviseurs',
+    brand: 'Daiko',
+    description: 'Téléviseur Daiko 32 pouces HD Frameless avec récepteur satellite TNT/Sat intégré. Système Google TV avec accès direct à YouTube, Netflix et IPTV. Dolby Audio et connectivité Bluetooth.',
+    stock: 20,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80'
+    ],
+    specs: {
+      'Taille écran': '32 pouces (81 cm)',
+      'Définition': 'HD 1366 x 768',
+      'Récepteur': 'Récepteur Satellite TNT / SAT Intégré',
+      'Fonctions': 'Google TV, Bluetooth, Dolby Audio'
+    },
+    isFeatured: false,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-16',
+    name: 'Plaque de Cuisson Encastrable Daiko 4 Feux Gaz Verre Trempé Noir',
+    ref: 'PLQ-DK-GAZ4-VT',
+    sku: 'EF-PL-016',
+    price: 1190,
+    originalPrice: 1450,
+    promo: true,
+    discountPercent: 18,
+    categoryId: 'plaques',
+    categoryName: 'Plaques de cuisson',
+    brand: 'Daiko',
+    description: 'Plaque encastrable Daiko 4 feux gaz sur verre trempé noir résistant aux chocs et rayures. Allumage électronique intégré aux manettes et sécurité thermocouple coupe-gaz automatique.',
+    stock: 14,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1629949009765-40fc74c954c4?w=800&q=80'
+    ],
+    specs: {
+      'Feux': '4 Brûleurs Gaz',
+      'Surface': 'Verre Trempé Noir Sécurit',
+      'Sécurité': 'Thermocouple automatique'
+    },
+    isFeatured: false,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-17',
+    name: 'Réfrigérateur Whirlpool NoFrost 438L 6th Sense Dual NoFrost Inox (W7931OOX)',
+    ref: 'REF-WHL-438-6S',
+    sku: 'EF-RF-017',
+    price: 7890,
+    originalPrice: 8990,
+    promo: true,
+    discountPercent: 12,
+    categoryId: 'refrigerateurs',
+    categoryName: 'Réfrigérateurs',
+    brand: 'Whirlpool',
+    description: 'Réfrigérateur combiné Whirlpool 438 Litres avec technologie exclusive 6th Sense Dual NoFrost. Maintient l\'humidité idéale pour préserver les aliments frais 4x plus longtemps. Finition inox anti-traces.',
+    stock: 7,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&q=80',
+      'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&q=80'
+    ],
+    specs: {
+      'Capacité globale': '438 Litres',
+      'Technologie': '6th Sense Dual NoFrost',
+      'Moteur': 'Inverter Zen Tech',
+      'Classe': 'A++',
+      'Finition': 'Acier Inoxydable Anti-traces'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-18',
+    name: 'Lave-linge Whirlpool FreshCare+ 9kg 1400 tr/min Inverter Steam (FFWDB964369)',
+    ref: 'LL-WHL-9KG-FC',
+    sku: 'EF-LL-018',
+    price: 4890,
+    originalPrice: 5490,
+    promo: true,
+    discountPercent: 11,
+    categoryId: 'lave-linge',
+    categoryName: 'Lave-linge',
+    brand: 'Whirlpool',
+    description: 'Lave-linge Whirlpool 9kg avec technologie FreshCare+ qui garde votre linge frais jusqu\'à 6 heures après la fin du cycle grâce au brassage doux et à la vapeur. Moteur induction SenseInverter ultra silencieux.',
+    stock: 9,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&q=80'
+    ],
+    specs: {
+      'Capacité': '9 Kg',
+      'Essorage': '1400 tr/min',
+      'Technologie': 'FreshCare+ Vapeur 6h',
+      'Moteur': 'SenseInverter Induction'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-19',
+    name: 'Four Encastrable Whirlpool 6th Sense Chaleur Tournante 73L Inox (AKZ96290IX)',
+    ref: 'FOUR-WHL-73L-6S',
+    sku: 'EF-FR-019',
+    price: 3990,
+    originalPrice: 4500,
+    promo: true,
+    discountPercent: 11,
+    categoryId: 'fours',
+    categoryName: 'Fours',
+    brand: 'Whirlpool',
+    description: 'Four encastrable multifonctions Whirlpool 73 litres 6th Sense. Système de cuisson Cook3 permettant de cuire jusqu\'à 3 plats différents simultanément sans transfert d\'odeurs. Nettoyage Pyrolyse.',
+    stock: 8,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80'
+    ],
+    specs: {
+      'Volume': '73 Litres',
+      'Technologie': '6th Sense Cook3',
+      'Nettoyage': 'Pyrolyse auto-nettoyante',
+      'Finish': 'Inox & Verre Noir'
+    },
+    isFeatured: false,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-20',
+    name: 'Matelas Dolidol Kinédorsal Bi-Comfort Orthopédique High Density 160x200cm',
+    ref: 'MAT-DOL-KINEDORSAL-160',
+    sku: 'EF-AM-020',
+    price: 3490,
+    originalPrice: 4200,
+    promo: true,
+    discountPercent: 17,
+    categoryId: 'ameublement-literie',
+    categoryName: 'Ameublement & Literie',
+    brand: 'Dolidol',
+    description: 'Matelas orthopédique Dolidol Kinédorsal Bi-Comfort médicalement recommandé pour le soutien de la colonne vertébrale. Mousse haute densité HR insensible aux déformations, coutil biologique hypoallergénique et face été/hiver.',
+    stock: 12,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80',
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80'
+    ],
+    specs: {
+      'Dimensions': '160 x 200 cm',
+      'Épaisseur': '29 cm',
+      'Mousse': 'Kinédorsal High Density Dolidol',
+      'Soutien': 'Orthopédique Ferme Kinésithérapie',
+      'Garantie': '1 an garanti'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-21',
+    name: 'Matelas Dolidol Therapedic Supreme Mémoire de Forme 140x190cm',
+    ref: 'MAT-DOL-THERAPEDIC-140',
+    sku: 'EF-AM-021',
+    price: 2790,
+    originalPrice: 3300,
+    promo: true,
+    discountPercent: 15,
+    categoryId: 'ameublement-literie',
+    categoryName: 'Ameublement & Literie',
+    brand: 'Dolidol',
+    description: 'Matelas Dolidol Therapedic Supreme avec plaque de mousse visco-élastique à mémoire de forme. Soulage les points de pression, assure un alignement parfait de la nuque et du dos.',
+    stock: 8,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80'
+    ],
+    specs: {
+      'Dimensions': '140 x 190 cm',
+      'Épaisseur': '26 cm',
+      'Accueil': 'Mémoire de Forme Visco',
+      'Traitement': 'Anti-acariens & Anti-bactérien'
+    },
+    isFeatured: false,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-22',
+    name: 'Ensemble Lit Capitonné Dolidol Royal avec Sommier Coffre & Tête de Lit 160x200cm',
+    ref: 'LIT-DOL-ROYAL-COFFRE',
+    sku: 'EF-AM-022',
+    price: 5490,
+    originalPrice: 6500,
+    promo: true,
+    discountPercent: 15,
+    categoryId: 'ameublement-literie',
+    categoryName: 'Ameublement & Literie',
+    brand: 'Dolidol',
+    description: 'Superbe ensemble lit capitonné Dolidol Royal avec sommier coffre à vérins hydrauliques pour un rangement maximal sous le lit. Tête de lit majestueuse de 125cm revêtue de velours anti-taches haut de gamme.',
+    stock: 5,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80',
+      'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80'
+    ],
+    specs: {
+      'Dimensions': '160 x 200 cm',
+      'Sommier': 'Coffre Hydraulique Sécurisé',
+      'Revêtement': 'Velours Dolidol Premium Anti-taches',
+      'Tête de lit': 'Capitonnée 125 cm inclus'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-05'
+  },
+  {
+    id: 'p-23',
+    name: 'Salon Marocain Moderne Dolidol Mousse HR Anti-Affaissement (3 Banquettes 2m)',
+    ref: 'SAL-DOL-MODERNE-3B',
+    sku: 'EF-AM-023',
+    price: 7490,
+    originalPrice: 8900,
+    promo: true,
+    discountPercent: 16,
+    categoryId: 'ameublement-literie',
+    categoryName: 'Ameublement & Literie',
+    brand: 'Dolidol',
+    description: 'Ensemble salon marocain contemporain équipé de mousses Dolidol Haute Résilience (HR35) guaranteed anti-affaissement. Comprend 3 banquettes de 2 mètres, structure bois cèdre et tissu Mobrara brodé.',
+    stock: 4,
+    guaranteeYears: 1,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&q=80',
+      'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=800&q=80'
+    ],
+    specs: {
+      'Composition': '3 Banquettes de 2m (Total 6m)',
+      'Mousse': 'Dolidol HR35 Haute Résilience',
+      'Bois': 'Cèdre Massif sculpté moderne',
+      'Tissu': 'Mobrara Velours brodé déperlant'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-05'
   }
 ];
 

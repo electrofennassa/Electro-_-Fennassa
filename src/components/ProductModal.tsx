@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Heart, ShoppingBag, ShieldCheck, CheckCircle, Phone, MessageCircle } from 'lucide-react';
+import { X, Heart, ShoppingBag, ShieldCheck, CheckCircle, Phone, MessageCircle, Share2, Copy, Check, Link } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import { INITIAL_CONTACT } from '../data/initialData';
@@ -17,10 +17,41 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   if (!product) return null;
 
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
+  const { addToCart, toggleWishlist, isInWishlist, storeContact } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [copied, setCopied] = useState(false);
   const inWishlist = isInWishlist(product.id);
+
+  const getProductUrl = () => {
+    const url = new URL(window.location.origin + window.location.pathname);
+    url.searchParams.set('product', product.id);
+    return url.toString();
+  };
+
+  const productUrl = getProductUrl();
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(productUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleNativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${product.name} - ELECTRO_FENNASSA`,
+          text: `Découvrez ${product.name} chez ELECTRO_FENNASSA (${product.price.toLocaleString('fr-FR')} DH)`,
+          url: productUrl,
+        });
+      } catch (e) {
+        // User cancelled share
+      }
+    } else {
+      handleCopyLink();
+    }
+  };
 
   const handleAddToCart = () => {
     addToCart(product, quantity);
@@ -192,12 +223,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={handleBuyNow}
-                className="w-full bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold py-2.5 rounded-xl transition-colors shadow-sm"
+                className="w-full bg-red-600 hover:bg-red-500 text-white text-xs font-bold py-2.5 rounded-xl transition-colors shadow-sm"
               >
                 Acheter Maintenant
               </button>
               <a
-                href={`https://wa.me/212644543909?text=Bonjour,%20je%20suis%20intéressé%20par%20le%20produit%20:${encodeURIComponent(product.name)}`}
+                href={`https://wa.me/${storeContact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Bonjour, je souhaite commander le produit :\n${product.name}\nLien : ${productUrl}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
@@ -205,6 +236,68 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 <MessageCircle className="w-4 h-4" />
                 <span>WhatsApp Express</span>
               </a>
+            </div>
+
+            {/* Share Product Link Section */}
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-extrabold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                  <Link className="w-3.5 h-3.5 text-red-600" />
+                  Lien unique de partage client
+                </span>
+                {copied && (
+                  <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full">
+                    <Check className="w-3 h-3" />
+                    Lien copié !
+                  </span>
+                )}
+              </div>
+
+              {/* Link Input Box */}
+              <div className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800">
+                <input
+                  type="text"
+                  readOnly
+                  value={productUrl}
+                  className="flex-1 bg-transparent text-[11px] font-mono text-slate-600 dark:text-slate-300 px-2 focus:outline-none truncate"
+                  onClick={(e) => (e.target as HTMLInputElement).select()}
+                />
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 transition-all ${
+                    copied
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-red-600 dark:hover:bg-red-600 dark:hover:text-white'
+                  }`}
+                >
+                  {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copied ? 'Copié' : 'Copier'}</span>
+                </button>
+              </div>
+
+              {/* Social Share Buttons */}
+              <div className="flex items-center gap-2 pt-1">
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(`Découvrez ${product.name} sur ELECTRO_FENNASSA (${product.price.toLocaleString('fr-FR')} DH) :\n${productUrl}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold py-1.5 px-2 rounded-lg border border-emerald-500/20 flex items-center justify-center gap-1 transition-colors"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>Partager sur WhatsApp</span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={handleNativeShare}
+                  className="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-[11px] font-bold py-1.5 px-3 rounded-lg flex items-center gap-1 transition-colors"
+                  title="Plus d'options de partage"
+                >
+                  <Share2 className="w-3.5 h-3.5" />
+                  <span>Partager</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

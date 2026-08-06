@@ -386,14 +386,14 @@ export const AdminPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-8 space-y-6 sm:space-y-8 overflow-x-hidden w-full">
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-slate-700/80 shadow-sm w-full">
         <div>
-          <span className="bg-orange-600 text-white text-[10px] uppercase px-2.5 py-0.5 rounded font-black tracking-widest inline-block mb-1">
+          <span className="bg-red-600 text-white text-[10px] uppercase px-2.5 py-0.5 rounded font-black tracking-widest inline-block mb-1">
             TABLEAU DE BORD ADMINISTRATION
           </span>
-          <h1 className="text-2xl font-black text-slate-900 dark:text-white">
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
             ELECTRO_FENNASSA Back-Office
           </h1>
           <p className="text-xs text-slate-500">
@@ -401,10 +401,10 @@ export const AdminPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
           <button
             onClick={handleExportCSV}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-sm transition-all"
+            className="flex-1 sm:flex-none justify-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-sm transition-all"
           >
             <FileSpreadsheet className="w-4 h-4" />
             <span>Exporter CSV</span>
@@ -412,21 +412,21 @@ export const AdminPage: React.FC = () => {
 
           <button
             onClick={downloadProjectZip}
-            className="bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-bold text-xs py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-sm transition-all"
+            className="flex-1 sm:flex-none justify-center bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-bold text-xs py-2.5 px-4 rounded-xl flex items-center gap-1.5 shadow-sm transition-all"
           >
-            <Download className="w-4 h-4 text-orange-500" />
+            <Download className="w-4 h-4 text-red-500" />
             <span>Export Code ZIP</span>
           </button>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-200 dark:border-slate-800 text-sm font-bold gap-6 overflow-x-auto pb-1">
+      <div className="flex border-b border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-bold gap-3 sm:gap-6 overflow-x-auto pb-2 scrollbar-none w-full max-w-full">
         <button
           onClick={() => setActiveTab('overview')}
-          className={`pb-3 border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
+          className={`pb-2.5 border-b-2 flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-colors ${
             activeTab === 'overview'
-              ? 'border-orange-600 text-orange-600 dark:text-orange-400 font-extrabold'
+              ? 'border-red-600 text-red-600 dark:text-red-400 font-extrabold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
@@ -436,9 +436,9 @@ export const AdminPage: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('products')}
-          className={`pb-3 border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
+          className={`pb-2.5 border-b-2 flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-colors ${
             activeTab === 'products'
-              ? 'border-orange-600 text-orange-600 dark:text-orange-400 font-extrabold'
+              ? 'border-red-600 text-red-600 dark:text-red-400 font-extrabold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
@@ -448,45 +448,45 @@ export const AdminPage: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('categories')}
-          className={`pb-3 border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
+          className={`pb-2.5 border-b-2 flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-colors ${
             activeTab === 'categories'
-              ? 'border-orange-600 text-orange-600 dark:text-orange-400 font-extrabold'
+              ? 'border-red-600 text-red-600 dark:text-red-400 font-extrabold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
-          <Grid className="w-4 h-4 text-orange-500" />
-          <span>Catégories & Rayons ({categories.length})</span>
+          <Grid className="w-4 h-4 text-red-500" />
+          <span>Catégories ({categories.length})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('promotions')}
-          className={`pb-3 border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
+          className={`pb-2.5 border-b-2 flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-colors ${
             activeTab === 'promotions'
               ? 'border-rose-600 text-rose-600 dark:text-rose-400 font-extrabold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
           <Tag className="w-4 h-4 text-rose-500" />
-          <span>Promotions & Ventes Flash ({products.filter(p => p.promo || (p.discountPercent && p.discountPercent > 0)).length})</span>
+          <span>Promos ({products.filter(p => p.promo || (p.discountPercent && p.discountPercent > 0)).length})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('packs')}
-          className={`pb-3 border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
+          className={`pb-2.5 border-b-2 flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-colors ${
             activeTab === 'packs'
               ? 'border-amber-600 text-amber-600 dark:text-amber-400 font-extrabold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
           <PackageCheck className="w-4 h-4 text-amber-500" />
-          <span>Packs Spéciaux ({packs.length})</span>
+          <span>Packs ({packs.length})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('orders')}
-          className={`pb-3 border-b-2 flex items-center gap-2 whitespace-nowrap transition-colors ${
+          className={`pb-2.5 border-b-2 flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-colors ${
             activeTab === 'orders'
-              ? 'border-orange-600 text-orange-600 dark:text-orange-400 font-extrabold'
+              ? 'border-red-600 text-red-600 dark:text-red-400 font-extrabold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
@@ -496,14 +496,14 @@ export const AdminPage: React.FC = () => {
 
         <button
           onClick={() => setActiveTab('settings')}
-          className={`pb-3 border-b-2 flex items-center gap-2 transition-colors ${
+          className={`pb-2.5 border-b-2 flex items-center gap-1.5 shrink-0 whitespace-nowrap transition-colors ${
             activeTab === 'settings'
-              ? 'border-orange-600 text-orange-600 dark:text-orange-400 font-extrabold'
+              ? 'border-red-600 text-red-600 dark:text-red-400 font-extrabold'
               : 'border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-slate-200'
           }`}
         >
           <Store className="w-4 h-4" />
-          <span>Coordonnées du Magasin</span>
+          <span>Coordonnées</span>
         </button>
       </div>
 
