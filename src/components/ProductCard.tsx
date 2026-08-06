@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, ShoppingBag, Eye, ShieldCheck, CheckCircle, Tag } from 'lucide-react';
+import { Heart, ShoppingBag, Eye, ShieldCheck, CheckCircle, MessageCircle } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 
@@ -14,7 +14,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onQuickView,
   onSelectProduct
 }) => {
-  const { addToCart, toggleWishlist, isInWishlist } = useCart();
+  const { addToCart, toggleWishlist, isInWishlist, storeContact } = useCart();
   const [hoveredImage, setHoveredImage] = useState(false);
   const [added, setAdded] = useState(false);
 
@@ -25,6 +25,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     addToCart(product, 1);
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
+  };
+
+  const handleWhatsAppOrder = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const text = encodeURIComponent(
+      `Bonjour ELECTRO_FENNASSA, je souhaite commander l'article :\n- ${product.name} (Réf: ${product.ref})\n- Prix: ${product.price.toLocaleString('fr-FR')} DH`
+    );
+    window.open(`https://wa.me/${storeContact.whatsapp.replace(/[^0-9]/g, '')}?text=${text}`, '_blank');
   };
 
   const handleToggleWishlist = (e: React.MouseEvent) => {
@@ -43,11 +51,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div
       onClick={handleCardClick}
-      className="group relative bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700/80 overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
+      className="group relative bg-white dark:bg-slate-800/90 rounded-3xl border border-slate-200/90 dark:border-slate-700/80 overflow-hidden shadow-xs hover:shadow-2xl hover:border-orange-500/40 transition-all duration-300 flex flex-col cursor-pointer"
     >
       {/* Product Image Area */}
       <div 
-        className="relative aspect-4/3 w-full bg-slate-100 dark:bg-slate-900/50 overflow-hidden"
+        className="relative aspect-4/3 w-full bg-slate-100 dark:bg-slate-900/60 overflow-hidden"
         onMouseEnter={() => setHoveredImage(true)}
         onMouseLeave={() => setHoveredImage(false)}
       >
@@ -58,19 +66,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               : product.images[0] || 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=600&q=80'
           }
           alt={product.name}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-center group-hover:scale-108 transition-transform duration-700"
           loading="lazy"
         />
 
         {/* Top Badges */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
+        <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
           {product.promo && (
-            <span className="bg-rose-600 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-sm uppercase tracking-wide">
-              {product.discountPercent ? `-${product.discountPercent}%` : 'PROMO'}
+            <span className="bg-gradient-to-r from-rose-600 to-orange-600 text-white text-[10px] font-black px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider">
+              {product.discountPercent ? `-${product.discountPercent}% OFF` : 'PROMO'}
             </span>
           )}
           {product.isFeatured && (
-            <span className="bg-amber-500 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-md shadow-sm uppercase tracking-wide">
+            <span className="bg-amber-400 text-slate-950 text-[10px] font-black px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider">
               VEDETTE
             </span>
           )}
@@ -80,7 +88,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <button
           onClick={handleToggleWishlist}
           aria-label="Ajouter aux favoris"
-          className={`absolute top-2.5 right-2.5 p-2 rounded-full backdrop-blur-md transition-all shadow-sm ${
+          className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-md transition-all shadow-md ${
             inWishlist
               ? 'bg-rose-500 text-white'
               : 'bg-white/80 dark:bg-slate-900/80 text-slate-600 dark:text-slate-300 hover:text-rose-500 dark:hover:text-rose-400'
@@ -90,16 +98,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </button>
 
         {/* Quick View Button on Hover */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onQuickView(product);
-          }}
-          className="absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 bg-slate-900/90 dark:bg-white/90 text-white dark:text-slate-900 text-xs font-bold px-3.5 py-2 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-1.5 transition-all duration-200"
-        >
-          <Eye className="w-3.5 h-3.5" />
-          <span>Aperçu Rapide</span>
-        </button>
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onQuickView(product);
+            }}
+            className="flex-1 bg-slate-900/90 dark:bg-white/90 text-white dark:text-slate-900 text-xs font-bold py-2 px-3 rounded-xl shadow-lg backdrop-blur-sm flex items-center justify-center gap-1.5 transition-all hover:bg-slate-900"
+          >
+            <Eye className="w-3.5 h-3.5" />
+            <span>Aperçu</span>
+          </button>
+
+          <button
+            onClick={handleWhatsAppOrder}
+            title="Commander rapidement sur WhatsApp"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white p-2 rounded-xl shadow-lg transition-all"
+          >
+            <MessageCircle className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
       {/* Product Content */}
@@ -107,17 +125,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div>
           {/* Brand & Stock Row */}
           <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
-            <span className="uppercase tracking-wider text-orange-600 dark:text-orange-400 font-bold">
+            <span className="uppercase tracking-wider text-red-600 dark:text-red-500 font-extrabold">
               {product.brand}
             </span>
-            <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+            <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium text-[10px]">
               <CheckCircle className="w-3 h-3" />
               {product.availability}
             </span>
           </div>
 
           {/* Product Title */}
-          <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm line-clamp-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm line-clamp-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
             {product.name}
           </h3>
 
@@ -126,7 +144,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <span className="bg-slate-100 dark:bg-slate-700/60 px-1.5 py-0.5 rounded font-mono text-[10px]">
               {product.ref}
             </span>
-            <span className="flex items-center gap-1 text-sky-600 dark:text-sky-400 font-medium">
+            <span className="flex items-center gap-1 text-sky-600 dark:text-sky-400 font-medium text-[10px]">
               <ShieldCheck className="w-3 h-3" />
               {product.guaranteeYears} an{product.guaranteeYears > 1 ? 's' : ''} garantie
             </span>
@@ -134,11 +152,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
 
         {/* Price & Add to Cart Action */}
-        <div className="pt-2 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between gap-2">
+        <div className="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between gap-2">
           <div>
             <div className="text-lg font-black text-slate-900 dark:text-white flex items-baseline gap-1">
               <span>{product.price.toLocaleString('fr-FR')}</span>
-              <span className="text-xs font-bold text-orange-600 dark:text-orange-400">DH</span>
+              <span className="text-xs font-bold text-red-600 dark:text-red-500">DH</span>
             </div>
             {product.originalPrice && (
               <span className="text-xs text-slate-400 line-through">
@@ -149,17 +167,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           <button
             onClick={handleAddToCart}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-xs ${
+            className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm ${
               added
                 ? 'bg-emerald-600 text-white scale-105'
-                : 'bg-orange-600 hover:bg-orange-500 text-white active:scale-95'
+                : 'bg-red-600 hover:bg-red-700 text-white active:scale-95 shadow-red-600/20'
             }`}
           >
             <ShoppingBag className="w-3.5 h-3.5" />
-            <span>{added ? 'Ajouté !' : 'Ajouter'}</span>
+            <span>{added ? 'Ajouté !' : 'Commander'}</span>
           </button>
         </div>
       </div>
     </div>
   );
 };
+

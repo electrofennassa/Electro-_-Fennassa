@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Product, CartItem, Order, OrderStatus } from '../types';
-import { INITIAL_PRODUCTS, INITIAL_ORDERS } from '../data/initialData';
+import { Product, CartItem, Order, OrderStatus, Pack, StoreContact, Category } from '../types';
+import { INITIAL_PRODUCTS, INITIAL_ORDERS, INITIAL_CONTACT, INITIAL_PACKS, INITIAL_CATEGORIES } from '../data/initialData';
 
 interface CartContextType {
   cart: CartItem[];
   addToCart: (product: Product, quantity?: number) => void;
+  addPackToCart: (pack: Pack) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, delta: number) => void;
   clearCart: () => void;
@@ -27,6 +28,19 @@ interface CartContextType {
   addProduct: (p: Omit<Product, 'id' | 'createdAt'>) => void;
   updateProduct: (p: Product) => void;
   deleteProduct: (id: string) => void;
+  // Dynamic Packs List for Admin CRUD
+  packs: Pack[];
+  addPack: (p: Omit<Pack, 'id'>) => void;
+  updatePack: (p: Pack) => void;
+  deletePack: (id: string) => void;
+  // Dynamic Categories List for Admin CRUD & Image customization
+  categories: Category[];
+  addCategory: (c: Omit<Category, 'id'> & { id?: string }) => void;
+  updateCategory: (c: Category) => void;
+  deleteCategory: (id: string) => void;
+  // Store Contact Management
+  storeContact: StoreContact;
+  updateStoreContact: (newContact: StoreContact) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -35,6 +49,21 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [products, setProducts] = useState<Product[]>(() => {
     const saved = localStorage.getItem('ef_products');
     return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
+  });
+
+  const [packs, setPacks] = useState<Pack[]>(() => {
+    const saved = localStorage.getItem('ef_packs');
+    return saved ? JSON.parse(saved) : INITIAL_PACKS;
+  });
+
+  const [categories, setCategories] = useState<Category[]>(() => {
+    const saved = localStorage.getItem('ef_categories');
+    return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
+  });
+
+  const [storeContact, setStoreContact] = useState<StoreContact>(() => {
+    const saved = localStorage.getItem('ef_store_contact');
+    return saved ? JSON.parse(saved) : INITIAL_CONTACT;
   });
 
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -60,6 +89,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [products]);
 
   useEffect(() => {
+    localStorage.setItem('ef_packs', JSON.stringify(packs));
+  }, [packs]);
+
+  useEffect(() => {
     localStorage.setItem('ef_cart', JSON.stringify(cart));
   }, [cart]);
 
@@ -70,6 +103,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     localStorage.setItem('ef_orders', JSON.stringify(orders));
   }, [orders]);
+
+  useEffect(() => {
+    localStorage.setItem('ef_store_contact', JSON.stringify(storeContact));
+  }, [storeContact]);
+
+  useEffect(() => {
+    localStorage.setItem('ef_categories', JSON.stringify(categories));
+  }, [categories]);
 
   const addToCart = (product: Product, quantity = 1) => {
     setCart(prev => {
@@ -82,6 +123,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return [...prev, { product, quantity }];
       }
     });
+  };
+
+  const addPackToCart = (pack: Pack) => {
+    pack.products.forEach(product => {
+      addToCart(product, 1);
+    });
+  };
+
+  const updateStoreContact = (newContact: StoreContact) => {
+    setStoreContact(newContact);
   };
 
   const removeFromCart = (productId: string) => {
@@ -188,11 +239,49 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setProducts(prev => prev.filter(p => p.id !== id));
   };
 
+  // Pack CRUD for Admin
+  const addPack = (p: Omit<Pack, 'id'>) => {
+    const newPack: Pack = {
+      ...p,
+      id: `pack-${Date.now()}`
+    };
+    setPacks(prev => [newPack, ...prev]);
+  };
+
+  const updatePack = (updated: Pack) => {
+    setPacks(prev => prev.map(pk => (pk.id === updated.id ? updated : pk)));
+  };
+
+  const deletePack = (id: string) => {
+    setPacks(prev => prev.filter(pk => pk.id !== id));
+  };
+
+  const addCategory = (c: Omit<Category, 'id'> & { id?: string }) => {
+    const generatedId = c.id && c.id.trim() 
+      ? c.id.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')
+      : c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') || `cat-${Date.now()}`;
+    const newCategory: Category = {
+      ...c,
+      id: generatedId,
+      productCount: c.productCount || 0
+    };
+    setCategories(prev => [...prev, newCategory]);
+  };
+
+  const updateCategory = (updated: Category) => {
+    setCategories(prev => prev.map(cat => (cat.id === updated.id ? updated : cat)));
+  };
+
+  const deleteCategory = (id: string) => {
+    setCategories(prev => prev.filter(cat => cat.id !== id));
+  };
+
   return (
     <CartContext.Provider
       value={{
         cart,
         addToCart,
+        addPackToCart,
         removeFromCart,
         updateQuantity,
         clearCart,
@@ -212,7 +301,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         products,
         addProduct,
         updateProduct,
-        deleteProduct
+        deleteProduct,
+        packs,
+        addPack,
+        updatePack,
+        deletePack,
+        categories,
+        addCategory,
+        updateCategory,
+        deleteCategory,
+        storeContact,
+        updateStoreContact
       }}
     >
       {children}

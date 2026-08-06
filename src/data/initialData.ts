@@ -150,7 +150,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&q=80',
-      'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&q=80'
+      'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=800&q=80',
+      'https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=800&q=80'
     ],
     specs: {
       'Capacité': '617 Litres',
@@ -180,7 +181,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&q=80',
-      'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=80'
+      'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&q=80',
+      'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=800&q=80'
     ],
     specs: {
       'Capacité': '9 Kg',
@@ -210,7 +212,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80',
-      'https://images.unsplash.com/photo-1577979749830-f1d742b96791?w=800&q=80'
+      'https://images.unsplash.com/photo-1577979749830-f1d742b96791?w=800&q=80',
+      'https://images.unsplash.com/photo-1461151304267-38535e780c79?w=800&q=80'
     ],
     specs: {
       'Taille écran': '55 pouces (139 cm)',
@@ -229,8 +232,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     sku: 'EF-AM-004',
     price: 3890,
     originalPrice: 4500,
-    promo: true,
-    discountPercent: 14,
+    promo: false,
     categoryId: 'ameublement-literie',
     categoryName: 'Ameublement & Literie',
     brand: 'Fennassa Comfort',
@@ -240,7 +242,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80',
-      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80'
+      'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80',
+      'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80'
     ],
     specs: {
       'Dimensions': '160 x 200 cm',
@@ -259,8 +262,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     sku: 'EF-AM-005',
     price: 4990,
     originalPrice: 5800,
-    promo: true,
-    discountPercent: 14,
+    promo: false,
     categoryId: 'ameublement-literie',
     categoryName: 'Ameublement & Literie',
     brand: 'Fennassa Comfort',
@@ -270,7 +272,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80',
-      'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80'
+      'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80',
+      'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&q=80'
     ],
     specs: {
       'Couchage': '160 x 200 cm',
@@ -288,8 +291,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     sku: 'EF-CL-006',
     price: 4390,
     originalPrice: 4890,
-    promo: true,
-    discountPercent: 10,
+    promo: false,
     categoryId: 'climatiseurs',
     categoryName: 'Climatiseurs',
     brand: 'Whirlpool',
@@ -299,7 +301,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1631545806062-8e7c1f810214?w=800&q=80',
-      'https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&q=80'
+      'https://images.unsplash.com/photo-1585338107529-13afc5f02586?w=800&q=80',
+      'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80'
     ],
     specs: {
       'Puissance': '12000 BTU (Idéal 25-35m²)',
@@ -317,8 +320,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     sku: 'EF-AM-007',
     price: 6200,
     originalPrice: 7500,
-    promo: true,
-    discountPercent: 17,
+    promo: false,
     categoryId: 'ameublement-literie',
     categoryName: 'Ameublement & Literie',
     brand: 'Fennassa Comfort',
@@ -328,7 +330,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=800&q=80',
-      'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=800&q=80'
+      'https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=800&q=80',
+      'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=800&q=80'
     ],
     specs: {
       'Table': '160-200 x 90 cm (Extensible)',
@@ -355,7 +358,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80',
-      'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&q=80'
+      'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=800&q=80',
+      'https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&q=80'
     ],
     specs: {
       'Volume': '71 Litres',
@@ -373,8 +377,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     sku: 'EF-PL-009',
     price: 2490,
     originalPrice: 2890,
-    promo: true,
-    discountPercent: 14,
+    promo: false,
     categoryId: 'plaques',
     categoryName: 'Plaques de cuisson',
     brand: 'Franke',
@@ -384,7 +387,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1629949009765-40fc74c954c4?w=800&q=80',
-      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80'
+      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80',
+      'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&q=80'
     ],
     specs: {
       'Nombre de feux': '4 Feux Gaz',
@@ -401,8 +405,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     sku: 'EF-PE-010',
     price: 1190,
     originalPrice: 1450,
-    promo: true,
-    discountPercent: 18,
+    promo: false,
     categoryId: 'petit-electromenager',
     categoryName: 'Petit Électroménager',
     brand: 'Moulinex',
@@ -412,7 +415,8 @@ export const INITIAL_PRODUCTS: Product[] = [
     availability: 'En Stock',
     images: [
       'https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=800&q=80',
-      'https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&q=80'
+      'https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&q=80',
+      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80'
     ],
     specs: {
       'Capacité': '6.0 Litres (Jusqu\'à 6 personnes)',
@@ -421,48 +425,91 @@ export const INITIAL_PRODUCTS: Product[] = [
     },
     isFeatured: true,
     createdAt: '2026-08-04'
+  },
+  {
+    id: 'p-11',
+    name: 'Micro-ondes Moulinex Ultimate Grill 28L Inox Encastrable',
+    ref: 'MO-MUL-28L-GRILL',
+    sku: 'EF-PE-011',
+    price: 1590,
+    originalPrice: 1890,
+    promo: true,
+    discountPercent: 16,
+    categoryId: 'petit-electromenager',
+    categoryName: 'Petit Électroménager',
+    brand: 'Moulinex',
+    description: 'Four Micro-ondes combiné grill 28 litres avec plateau tournant 31.5cm, commande électronique, décongélation automatique et cavité inox facile à nettoyer.',
+    stock: 18,
+    guaranteeYears: 2,
+    availability: 'En Stock',
+    images: [
+      'https://images.unsplash.com/photo-1585515320310-259814833e62?w=800&q=80',
+      'https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=800&q=80',
+      'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80'
+    ],
+    specs: {
+      'Capacité': '28 Litres',
+      'Puissance Micro-ondes': '900W',
+      'Puissance Grill': '1100W',
+      'Finition': 'Inox Brossé'
+    },
+    isFeatured: true,
+    createdAt: '2026-08-04'
   }
 ];
 
 export const INITIAL_PACKS: Pack[] = [
   {
-    id: 'pack-2',
-    name: 'Pack Duo Cuisine Essentielle',
-    type: 'Pack 2 produits',
-    itemCount: 2,
-    description: 'Combine un réfrigérateur combiné Samsung NoFrost et un lave-linge LG 9kg. Idéal pour équiper sa première cuisine avec une remise de 15%.',
-    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80',
-    products: [INITIAL_PRODUCTS[0], INITIAL_PRODUCTS[1]],
-    originalPrice: 16980,
-    packPrice: 14430,
-    savings: 2550,
-    badge: 'Remise -15%'
-  },
-  {
-    id: 'pack-3',
-    name: 'Pack Trio Électro & Multimédia Premium',
+    id: 'pack-trio-salon',
+    name: 'Pack Trio Équipement Spécial (Réfrigérateur + Télévision 4K + Micro-ondes)',
     type: 'Pack 3 produits',
     itemCount: 3,
-    description: 'Réfrigérateur Samsung Side-by-Side + Lave-linge LG 9kg + Téléviseur TCL QLED 55" 4K. L\'équipement complet avec 20% d\'économie automatique.',
+    description: 'Le trio incontournable recommandé pour équiper votre foyer : Réfrigérateur Samsung NoFrost Side-by-Side 617L + Smart TV TCL 55" QLED 4K + Micro-ondes Moulinex Grill 28L. Économisez 3 580 DH.',
     image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80',
-    products: [INITIAL_PRODUCTS[0], INITIAL_PRODUCTS[1], INITIAL_PRODUCTS[2]],
-    originalPrice: 21770,
-    packPrice: 17410,
-    savings: 4360,
-    badge: 'Offre Spéciale -20%'
+    products: [INITIAL_PRODUCTS[0], INITIAL_PRODUCTS[2], INITIAL_PRODUCTS[10]],
+    originalPrice: 17870,
+    packPrice: 14290,
+    savings: 3580,
+    badge: 'Offre Star -20%'
   },
   {
-    id: 'pack-4',
-    name: 'Pack Grand Mariage & Ameublement Complete Luxe',
+    id: 'pack-duo-cuisine',
+    name: 'Pack Duo Cuisine Essentielle (Réfrigérateur + Lave-linge)',
+    type: 'Pack 2 produits',
+    itemCount: 2,
+    description: 'Combinaison gagnante : Réfrigérateur Samsung Side-by-Side 617L + Lave-linge LG Vivace 9kg AI DD. Économisez 2 500 DH sur vos deux appareils indispensables.',
+    image: 'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&q=80',
+    products: [INITIAL_PRODUCTS[0], INITIAL_PRODUCTS[1]],
+    originalPrice: 16980,
+    packPrice: 14480,
+    savings: 2500,
+    badge: 'Pack Duo -15%'
+  },
+  {
+    id: 'pack-mariage-luxe',
+    name: 'Pack Grand Mariage & Nouveau Foyer (Réfrigérateur + Lave-linge + Smart TV + Lit Orthopédique)',
     type: 'Pack 4 produits',
     itemCount: 4,
-    description: 'Réfrigérateur Samsung 617L + Lave-linge LG 9kg + Smart TV 55" + Ensemble Lit & Matelas Orthopédique Royal 160x200cm. Le pack ultime pour nouveau foyer.',
+    description: 'Le pack ultime complet pour les nouveaux mariés : Réfrigérateur 617L, Lave-linge 9kg, TV 55" QLED et Ensemble Lit & Matelas Orthopédique Royal 160x200cm.',
     image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800&q=80',
     products: [INITIAL_PRODUCTS[0], INITIAL_PRODUCTS[1], INITIAL_PRODUCTS[2], INITIAL_PRODUCTS[3]],
     originalPrice: 25660,
     packPrice: 19990,
     savings: 5670,
     badge: 'Super Pack Mariage -22%'
+  },
+  {
+    id: 'pack-cuisson-encastrable',
+    name: 'Pack Trio Cuisson Encastrable (Four Bosch + Plaque Franke + Micro-ondes Moulinex)',
+    type: 'Pack 3 produits',
+    itemCount: 3,
+    description: 'Équipez votre cuisine sur mesure : Four encastrable Pyrolyse Bosch + Plaque 4 Feux Gaz verre trempé Franke + Micro-ondes Inox Moulinex.',
+    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=800&q=80',
+    products: [INITIAL_PRODUCTS[7], INITIAL_PRODUCTS[8], INITIAL_PRODUCTS[10]],
+    originalPrice: 8670,
+    packPrice: 7190,
+    savings: 1480,
+    badge: 'Pack Cuisine -17%'
   }
 ];
 
@@ -475,7 +522,7 @@ export const INITIAL_ORDERS: Order[] = [
     customerPhone: '+212661234567',
     address: 'Quartier Al Wafaa, N°45',
     city: 'Taourirt',
-    totalAmount: 14430,
+    totalAmount: 11490,
     shippingFee: 0,
     paymentMethod: 'Paiement à la livraison',
     status: 'Livrée',
@@ -518,3 +565,4 @@ export const INITIAL_ORDERS: Order[] = [
     ]
   }
 ];
+

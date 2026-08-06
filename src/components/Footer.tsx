@@ -11,9 +11,11 @@ import {
   Code2, 
   Terminal,
   ExternalLink,
-  MessageCircle
+  MessageCircle,
+  PackageCheck,
+  Tag
 } from 'lucide-react';
-import { INITIAL_CONTACT } from '../data/initialData';
+import { useCart } from '../context/CartContext';
 import { downloadProjectZip } from '../utils/projectZip';
 
 interface FooterProps {
@@ -21,6 +23,8 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
+  const { storeContact } = useCart();
+
   return (
     <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 transition-colors">
       {/* Guarantees & Features Bar */}
@@ -73,11 +77,11 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
         {/* Company Bio */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-orange-600 flex items-center justify-center text-white font-black text-lg">
+            <div className="w-9 h-9 rounded-xl bg-red-600 flex items-center justify-center text-white font-black text-lg shadow-md">
               EF
             </div>
             <span className="text-xl font-extrabold text-white">
-              ELECTRO<span className="text-orange-500">_FENNASSA</span>
+              ELECTRO<span className="text-red-500">_FENNASSA</span>
             </span>
           </div>
           <p className="text-xs text-slate-400 leading-relaxed">
@@ -99,34 +103,38 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
 
         {/* Quick Navigation */}
         <div>
-          <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-orange-500 pl-2">
+          <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-red-600 pl-2">
             Navigation Rapide
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
-              <button onClick={() => setCurrentView('home')} className="hover:text-orange-400 transition-colors">Accueil</button>
+              <button onClick={() => setCurrentView('home')} className="hover:text-red-400 transition-colors">Accueil</button>
             </li>
             <li>
-              <button onClick={() => setCurrentView('shop')} className="hover:text-orange-400 transition-colors">Boutique & Catalogue</button>
+              <button onClick={() => setCurrentView('shop')} className="hover:text-red-400 transition-colors">Boutique & Catalogue</button>
             </li>
             <li>
-              <button onClick={() => setCurrentView('categories')} className="hover:text-orange-400 transition-colors">Toutes les Catégories</button>
+              <button onClick={() => setCurrentView('categories')} className="hover:text-red-400 transition-colors">Toutes les Catégories</button>
             </li>
             <li>
-              <button onClick={() => setCurrentView('packs')} className="hover:text-orange-400 transition-colors">Packs Spéciaux Électro</button>
+              <button onClick={() => setCurrentView('packs')} className="hover:text-red-400 text-red-400 font-bold transition-colors flex items-center gap-1">
+                <PackageCheck className="w-3.5 h-3.5" /> Packs Spéciaux (-20%)
+              </button>
             </li>
             <li>
-              <button onClick={() => setCurrentView('promotions')} className="hover:text-orange-400 transition-colors">Promotions & Ventes Flash</button>
+              <button onClick={() => setCurrentView('promotions')} className="hover:text-red-400 text-rose-400 font-bold transition-colors flex items-center gap-1">
+                <Tag className="w-3.5 h-3.5" /> Promotions Flash
+              </button>
             </li>
             <li>
-              <button onClick={() => setCurrentView('faq')} className="hover:text-orange-400 transition-colors">Foire Aux Questions (FAQ)</button>
+              <button onClick={() => setCurrentView('faq')} className="hover:text-red-400 transition-colors">Foire Aux Questions (FAQ)</button>
             </li>
           </ul>
         </div>
 
         {/* Categories */}
         <div>
-          <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-orange-500 pl-2">
+          <h4 className="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-2 border-red-600 pl-2">
             Rayons Principaux
           </h4>
           <ul className="space-y-2 text-xs">
@@ -141,21 +149,21 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
 
         {/* Store Contact & Android/Termux Download */}
         <div className="space-y-4">
-          <h4 className="text-white font-bold text-sm uppercase tracking-wider border-l-2 border-orange-500 pl-2">
+          <h4 className="text-white font-bold text-sm uppercase tracking-wider border-l-2 border-red-600 pl-2">
             Magasin & Développeur
           </h4>
           <div className="space-y-2.5 text-xs text-slate-300">
             <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-orange-400 shrink-0 mt-0.5" />
-              <span>{INITIAL_CONTACT.address}, {INITIAL_CONTACT.city}, Maroc</span>
+              <MapPin className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+              <span>{storeContact.address}, {storeContact.city}, {storeContact.country}</span>
             </div>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-              <a href={`tel:${INITIAL_CONTACT.phone}`} className="hover:text-white">{INITIAL_CONTACT.phone}</a>
+              <a href={`tel:${storeContact.phone}`} className="hover:text-white">{storeContact.phone}</a>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-sky-400 shrink-0" />
-              <a href={`mailto:${INITIAL_CONTACT.email}`} className="hover:text-white">{INITIAL_CONTACT.email}</a>
+              <a href={`mailto:${storeContact.email}`} className="hover:text-white">{storeContact.email}</a>
             </div>
           </div>
 
@@ -163,7 +171,7 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
           <div className="pt-2 border-t border-slate-800">
             <button
               onClick={downloadProjectZip}
-              className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-orange-400 border border-slate-700 hover:border-orange-500/50 text-xs font-bold py-2.5 px-3 rounded-lg transition-all"
+              className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-red-400 border border-slate-700 hover:border-red-500/50 text-xs font-bold py-2.5 px-3 rounded-lg transition-all"
             >
               <Download className="w-4 h-4" />
               <span>Télécharger le Projet (.ZIP pour Termux/Acode)</span>

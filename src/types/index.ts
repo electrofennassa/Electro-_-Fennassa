@@ -1,17 +1,4 @@
-export type CategoryId = 
-  | 'refrigerateurs'
-  | 'lave-linge'
-  | 'climatiseurs'
-  | 'congelateurs'
-  | 'televiseurs'
-  | 'fours'
-  | 'plaques'
-  | 'hottes'
-  | 'aspirateurs'
-  | 'petit-electromenager'
-  | 'chauffe-eau'
-  | 'accessoires'
-  | 'ameublement-literie';
+export type CategoryId = string;
 
 export interface Product {
   id: string;

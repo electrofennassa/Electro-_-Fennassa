@@ -11,7 +11,8 @@ import {
 } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { Product, FilterState } from '../types';
-import { INITIAL_CATEGORIES, INITIAL_BRANDS } from '../data/initialData';
+import { INITIAL_BRANDS } from '../data/initialData';
+import { useCart } from '../context/CartContext';
 
 interface ShopPageProps {
   products: Product[];
@@ -30,6 +31,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
   searchQuery,
   setSearchQuery
 }) => {
+  const { categories } = useCart();
   const [filters, setFilters] = useState<FilterState>({
     search: searchQuery,
     categoryId: selectedCategory,
@@ -161,12 +163,12 @@ export const ShopPage: React.FC<ShopPageProps> = ({
         <aside className={`lg:block ${mobileFiltersOpen ? 'block' : 'hidden'} space-y-6 bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm h-fit sticky top-24`}>
           <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
             <h3 className="font-extrabold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-              <Filter className="w-4 h-4 text-orange-600" />
+              <Filter className="w-4 h-4 text-red-600" />
               <span>Filtrer la Recherche</span>
             </h3>
             <button
               onClick={handleResetFilters}
-              className="text-[11px] font-bold text-orange-600 dark:text-orange-400 hover:underline"
+              className="text-[11px] font-bold text-red-600 dark:text-red-400 hover:underline"
             >
               Réinitialiser
             </button>
@@ -198,7 +200,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                 }}
                 className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors ${
                   !filters.categoryId
-                    ? 'bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 font-bold'
+                    ? 'bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 font-bold'
                     : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                 }`}
               >
@@ -206,7 +208,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                 <span>{products.length}</span>
               </button>
 
-              {INITIAL_CATEGORIES.map((cat) => (
+              {categories.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => {
@@ -215,7 +217,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                   }}
                   className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors ${
                     filters.categoryId === cat.id
-                      ? 'bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 font-bold'
+                      ? 'bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 font-bold'
                       : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
                   }`}
                 >
@@ -247,7 +249,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
           <div className="space-y-2 pt-4 border-t border-slate-100 dark:border-slate-800">
             <div className="flex justify-between items-center text-xs font-bold">
               <label className="text-slate-700 dark:text-slate-300">Prix Maximum</label>
-              <span className="text-orange-600 font-extrabold">{filters.maxPrice.toLocaleString('fr-FR')} DH</span>
+              <span className="text-red-600 font-extrabold">{filters.maxPrice.toLocaleString('fr-FR')} DH</span>
             </div>
             <input
               type="range"
@@ -256,7 +258,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
               step="500"
               value={filters.maxPrice}
               onChange={(e) => setFilters(prev => ({ ...prev, maxPrice: Number(e.target.value) }))}
-              className="w-full accent-orange-600 cursor-pointer"
+              className="w-full accent-red-600 cursor-pointer"
             />
           </div>
 
@@ -267,19 +269,9 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                 type="checkbox"
                 checked={filters.inStockOnly}
                 onChange={(e) => setFilters(prev => ({ ...prev, inStockOnly: e.target.checked }))}
-                className="rounded text-orange-600 focus:ring-orange-500 w-4 h-4"
+                className="rounded text-red-600 focus:ring-red-500 w-4 h-4"
               />
               <span>Uniquement produits En Stock</span>
-            </label>
-
-            <label className="flex items-center gap-2 font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={filters.promoOnly}
-                onChange={(e) => setFilters(prev => ({ ...prev, promoOnly: e.target.checked }))}
-                className="rounded text-orange-600 focus:ring-orange-500 w-4 h-4"
-              />
-              <span>Uniquement les Promotions</span>
             </label>
           </div>
         </aside>
@@ -298,7 +290,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
             </div>
           ) : (
             <div className="bg-white dark:bg-slate-900 rounded-3xl p-12 text-center border border-slate-200 dark:border-slate-800 space-y-4">
-              <div className="w-16 h-16 bg-orange-100 dark:bg-orange-950/50 text-orange-600 rounded-2xl mx-auto flex items-center justify-center">
+              <div className="w-16 h-16 bg-red-100 dark:bg-red-950/50 text-red-600 rounded-2xl mx-auto flex items-center justify-center">
                 <Search className="w-8 h-8" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -309,7 +301,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
               </p>
               <button
                 onClick={handleResetFilters}
-                className="bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold py-2.5 px-6 rounded-xl transition-colors inline-block"
+                className="bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2.5 px-6 rounded-xl transition-colors inline-block"
               >
                 Réinitialiser les filtres
               </button>

@@ -12,8 +12,6 @@ import { Product } from './types';
 import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
 import { CategoriesPage } from './pages/CategoriesPage';
-import { PacksPage } from './pages/PacksPage';
-import { PromotionsPage } from './pages/PromotionsPage';
 import { CartPage } from './pages/CartPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { ContactPage } from './pages/ContactPage';
@@ -21,6 +19,8 @@ import { FAQPage } from './pages/FAQPage';
 import { AccountPage } from './pages/AccountPage';
 import { AdminPage } from './pages/AdminPage';
 import { DocsPage } from './pages/DocsPage';
+import { PacksPage } from './pages/PacksPage';
+import { PromotionsPage } from './pages/PromotionsPage';
 
 function AppContent() {
   const { products } = useCart();
@@ -97,8 +97,8 @@ function AppContent() {
 
         {currentView === 'packs' && (
           <PacksPage
-            setCurrentView={setCurrentView}
             onQuickView={handleQuickView}
+            setCurrentView={setCurrentView}
           />
         )}
 

@@ -10,9 +10,10 @@ import {
   Building2,
   Navigation
 } from 'lucide-react';
-import { INITIAL_CONTACT } from '../data/initialData';
+import { useCart } from '../context/CartContext';
 
 export const ContactPage: React.FC = () => {
+  const { storeContact } = useCart();
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
 
@@ -57,7 +58,7 @@ export const ContactPage: React.FC = () => {
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs">Adresse du Showroom</h4>
                   <p className="text-slate-500 dark:text-slate-400 mt-0.5">
-                    {INITIAL_CONTACT.address}, {INITIAL_CONTACT.city}, Maroc
+                    {storeContact.address}, {storeContact.city}, {storeContact.country}
                   </p>
                 </div>
               </div>
@@ -68,8 +69,8 @@ export const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs">Téléphone Direct</h4>
-                  <a href={`tel:${INITIAL_CONTACT.phone}`} className="text-emerald-600 dark:text-emerald-400 font-bold hover:underline">
-                    {INITIAL_CONTACT.phone}
+                  <a href={`tel:${storeContact.phone}`} className="text-emerald-600 dark:text-emerald-400 font-bold hover:underline">
+                    {storeContact.phone}
                   </a>
                 </div>
               </div>
@@ -80,8 +81,8 @@ export const ContactPage: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs">Email Officiel</h4>
-                  <a href={`mailto:${INITIAL_CONTACT.email}`} className="text-sky-600 dark:text-sky-400 font-bold hover:underline">
-                    {INITIAL_CONTACT.email}
+                  <a href={`mailto:${storeContact.email}`} className="text-sky-600 dark:text-sky-400 font-bold hover:underline">
+                    {storeContact.email}
                   </a>
                 </div>
               </div>
@@ -93,7 +94,7 @@ export const ContactPage: React.FC = () => {
                 <div>
                   <h4 className="font-bold text-slate-900 dark:text-white text-xs">Horaires d'ouverture</h4>
                   <p className="text-slate-500 dark:text-slate-400 mt-0.5">
-                    {INITIAL_CONTACT.hours}
+                    {storeContact.hours}
                   </p>
                 </div>
               </div>
@@ -102,13 +103,13 @@ export const ContactPage: React.FC = () => {
             {/* Direct WhatsApp Button */}
             <div className="pt-2 border-t border-slate-100 dark:border-slate-700">
               <a
-                href={`https://wa.me/212644543909?text=Bonjour%20ELECTRO_FENNASSA,%20je%20souhaite%20une%20information.`}
+                href={`https://wa.me/${storeContact.whatsapp.replace(/[^0-9]/g, '')}?text=Bonjour%20${encodeURIComponent(storeContact.name)},%20je%20souhaite%20une%20information.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 shadow-md transition-all"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Discuter directement sur WhatsApp</span>
+                <span>Discuter directement sur WhatsApp ({storeContact.whatsapp})</span>
               </a>
             </div>
           </div>
