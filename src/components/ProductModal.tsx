@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Heart, ShoppingBag, ShieldCheck, CheckCircle, Phone, MessageCircle, Share2, Copy, Check, Link } from 'lucide-react';
+import { X, Heart, ShoppingBag, ShieldCheck, CheckCircle, Phone, MessageCircle, Share2, Copy, Check, Link, Scale } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import { INITIAL_CONTACT } from '../data/initialData';
@@ -15,13 +15,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   onClose,
   onBuyNow
 }) => {
-  if (!product) return null;
-
-  const { addToCart, toggleWishlist, isInWishlist, storeContact } = useCart();
+  const { addToCart, toggleWishlist, isInWishlist, storeContact, toggleCompare, isInCompare, setIsCompareModalOpen } = useCart();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [copied, setCopied] = useState(false);
+
+  if (!product) return null;
+
   const inWishlist = isInWishlist(product.id);
+  const inCompare = isInCompare(product.id);
 
   const getProductUrl = () => {
     const url = new URL(window.location.origin + window.location.pathname);
@@ -209,6 +211,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               {/* Wishlist */}
               <button
                 onClick={() => toggleWishlist(product)}
+                title={inWishlist ? "Retirer des favoris" : "Ajouter aux favoris"}
                 className={`p-3 rounded-xl border transition-colors ${
                   inWishlist
                     ? 'bg-rose-50 border-rose-200 text-rose-600'
@@ -216,6 +219,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 }`}
               >
                 <Heart className={`w-4 h-4 ${inWishlist ? 'fill-current' : ''}`} />
+              </button>
+
+              {/* Compare Button */}
+              <button
+                onClick={() => toggleCompare(product)}
+                title={inCompare ? "Retirer du comparateur" : "Comparer ce produit"}
+                className={`p-3 rounded-xl border transition-colors ${
+                  inCompare
+                    ? 'bg-red-600 border-red-600 text-white shadow-md'
+                    : 'border-slate-300 dark:border-slate-700 text-slate-600 hover:text-red-600'
+                }`}
+              >
+                <Scale className="w-4 h-4" />
               </button>
             </div>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, ShoppingBag, Eye, ShieldCheck, CheckCircle, MessageCircle, Share2, Check } from 'lucide-react';
+import { Heart, ShoppingBag, Eye, ShieldCheck, CheckCircle, MessageCircle, Share2, Check, Scale } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
 
@@ -14,12 +14,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onQuickView,
   onSelectProduct
 }) => {
-  const { addToCart, toggleWishlist, isInWishlist, storeContact } = useCart();
+  const { 
+    addToCart, 
+    toggleWishlist, 
+    isInWishlist, 
+    storeContact,
+    toggleCompare,
+    isInCompare
+  } = useCart();
+
   const [hoveredImage, setHoveredImage] = useState(false);
   const [added, setAdded] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const inWishlist = isInWishlist(product.id);
+  const inCompare = isInCompare(product.id);
 
   const handleShareProduct = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -94,8 +103,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           )}
         </div>
 
-        {/* Top Right Action Buttons (Wishlist & Share) */}
+        {/* Top Right Action Buttons (Share, Wishlist & Compare) */}
         <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleCompare(product);
+            }}
+            aria-label="Ajouter au comparateur"
+            title={inCompare ? "Retirer du comparateur" : "Comparer ce produit"}
+            className={`p-2 rounded-full backdrop-blur-md transition-all shadow-md ${
+              inCompare
+                ? 'bg-red-600 text-white font-bold scale-105 ring-2 ring-red-400'
+                : 'bg-white/80 dark:bg-slate-900/80 text-slate-600 dark:text-slate-300 hover:text-red-600 dark:hover:text-red-400'
+            }`}
+          >
+            <Scale className="w-4 h-4" />
+          </button>
+
           <button
             onClick={handleShareProduct}
             aria-label="Partager le lien du produit"
@@ -127,17 +152,33 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </button>
         </div>
 
-        {/* Quick View Button on Hover */}
-        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+        {/* Quick Action Button Bar on Hover */}
+        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-center gap-1.5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
           <button
             onClick={(e) => {
               e.stopPropagation();
               onQuickView(product);
             }}
-            className="flex-1 bg-slate-900/90 dark:bg-white/90 text-white dark:text-slate-900 text-xs font-bold py-2 px-3 rounded-xl shadow-lg backdrop-blur-sm flex items-center justify-center gap-1.5 transition-all hover:bg-slate-900"
+            className="flex-1 bg-slate-900/90 dark:bg-white/90 text-white dark:text-slate-900 text-xs font-bold py-2 px-2.5 rounded-xl shadow-lg backdrop-blur-sm flex items-center justify-center gap-1 transition-all hover:bg-slate-900"
           >
             <Eye className="w-3.5 h-3.5" />
             <span>Aperçu</span>
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleCompare(product);
+            }}
+            title={inCompare ? "Retirer du comparateur" : "Comparer"}
+            className={`p-2 rounded-xl shadow-lg transition-all text-xs font-bold flex items-center justify-center gap-1 ${
+              inCompare
+                ? 'bg-red-600 text-white'
+                : 'bg-slate-800/90 hover:bg-red-600 text-white backdrop-blur-sm'
+            }`}
+          >
+            <Scale className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">{inCompare ? 'Comparé' : 'Comparer'}</span>
           </button>
 
           <button

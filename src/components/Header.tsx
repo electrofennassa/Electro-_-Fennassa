@@ -14,7 +14,8 @@ import {
   Sparkles,
   ShieldCheck,
   Tag,
-  MessageCircle
+  MessageCircle,
+  Scale
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
@@ -41,7 +42,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const { theme, toggleTheme } = useTheme();
   const { user, logout, isAdmin } = useAuth();
-  const { itemCount, wishlist, storeContact } = useCart();
+  const { itemCount, wishlist, storeContact, compareList, setIsCompareModalOpen } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
 
@@ -166,6 +167,20 @@ export const Header: React.FC<HeaderProps> = ({
             title={theme === 'light' ? 'Mode Sombre' : 'Mode Clair'}
           >
             {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5 text-amber-400" />}
+          </button>
+
+          {/* Compare Button */}
+          <button
+            onClick={() => setIsCompareModalOpen(true)}
+            className="relative p-2.5 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+            title="Comparateur de produits"
+          >
+            <Scale className="w-5 h-5 text-red-600 dark:text-red-500" />
+            {compareList.length > 0 && (
+              <span className="absolute top-1 right-1 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-bounce">
+                {compareList.length}
+              </span>
+            )}
           </button>
 
           {/* Wishlist Button */}

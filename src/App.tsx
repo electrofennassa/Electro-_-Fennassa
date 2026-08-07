@@ -5,6 +5,8 @@ import { CartProvider, useCart } from './context/CartContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ProductModal } from './components/ProductModal';
+import { CompareModal } from './components/CompareModal';
+import { CompareFloatingBar } from './components/CompareFloatingBar';
 import { LoginModal } from './components/LoginModal';
 import { Product } from './types';
 
@@ -23,7 +25,7 @@ import { PacksPage } from './pages/PacksPage';
 import { PromotionsPage } from './pages/PromotionsPage';
 
 function AppContent() {
-  const { products } = useCart();
+  const { products, isCompareModalOpen, setIsCompareModalOpen } = useCart();
 
   const [currentView, setCurrentView] = useState('home');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -173,11 +175,26 @@ function AppContent() {
         }}
       />
 
-      {/* Modals */}
+      {/* Modals & Floating Tools */}
       <ProductModal
         product={quickViewProduct}
         onClose={() => handleQuickView(null)}
       />
+
+      <CompareModal
+        isOpen={isCompareModalOpen}
+        onClose={() => setIsCompareModalOpen(false)}
+        onQuickView={(product) => {
+          setIsCompareModalOpen(false);
+          handleQuickView(product);
+        }}
+        onNavigateShop={() => {
+          setCurrentView('shop');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      />
+
+      <CompareFloatingBar />
 
       <LoginModal
         isOpen={isLoginOpen}

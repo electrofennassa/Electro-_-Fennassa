@@ -12,6 +12,17 @@ interface CartContextType {
   wishlist: Product[];
   toggleWishlist: (product: Product) => void;
   isInWishlist: (productId: string) => boolean;
+  // Product Comparison State
+  compareList: Product[];
+  addToCompare: (product: Product) => boolean;
+  removeFromCompare: (productId: string) => void;
+  toggleCompare: (product: Product) => void;
+  isInCompare: (productId: string) => boolean;
+  clearCompare: () => void;
+  isCompareModalOpen: boolean;
+  setIsCompareModalOpen: (open: boolean) => void;
+  compareToastMessage: string | null;
+  clearCompareToastMessage: () => void;
   totalAmount: number;
   subtotalAmount: number;
   itemCount: number;
@@ -99,6 +110,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return saved ? JSON.parse(saved) : [];
   });
 
+  const [compareList, setCompareList] = useState<Product[]>(() => {
+    const saved = localStorage.getItem('ef_compare');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  const [isCompareModalOpen, setIsCompareModalOpen] = useState(false);
+  const [compareToastMessage, setCompareToastMessage] = useState<string | null>(null);
+
   const [orders, setOrders] = useState<Order[]>(() => {
     const saved = localStorage.getItem('ef_orders');
     return saved ? JSON.parse(saved) : INITIAL_ORDERS;
@@ -122,6 +141,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     localStorage.setItem('ef_wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
+
+  useEffect(() => {
+    localStorage.setItem('ef_compare', JSON.stringify(compareList));
+  }, [compareList]);
 
   useEffect(() => {
     localStorage.setItem('ef_orders', JSON.stringify(orders));
@@ -195,6 +218,46 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const isInWishlist = (productId: string) => {
     return wishlist.some(p => p.id === productId);
+  };
+
+  // Compare Methods
+  const isInCompare = (productId: string) => {
+    return compareList.some(p => p.id === productId);
+  };
+
+  const addToCompare = (product: Product): boolean => {
+    if (isInCompare(product.id)) {
+      setCompareToastMessage(`Le produit "${product.brand} - ${product.name.slice(0, 25)}..." est déjà dans votre comparateur.`);
+      return true;
+    }
+    if (compareList.length >= 3) {
+      setCompareToastMessage(`Vous ne pouvez comparer que 3 produits au maximum. Veuillez retirer un produit pour en ajouter un autre.`);
+      return false;
+    }
+    setCompareList(prev => [...prev, product]);
+    setCompareToastMessage(`Produit ajouté au comparateur (${compareList.length + 1}/3)`);
+    return true;
+  };
+
+  const removeFromCompare = (productId: string) => {
+    setCompareList(prev => prev.filter(p => p.id !== productId));
+  };
+
+  const toggleCompare = (product: Product) => {
+    if (isInCompare(product.id)) {
+      removeFromCompare(product.id);
+      setCompareToastMessage(`Produit retiré du comparateur.`);
+    } else {
+      addToCompare(product);
+    }
+  };
+
+  const clearCompare = () => {
+    setCompareList([]);
+  };
+
+  const clearCompareToastMessage = () => {
+    setCompareToastMessage(null);
   };
 
   const subtotalAmount = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
@@ -311,6 +374,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         wishlist,
         toggleWishlist,
         isInWishlist,
+        compareList,
+        addToCompare,
+        removeFromCompare,
+        toggleCompare,
+        isInCompare,
+        clearCompare,
+        isCompareModalOpen,
+        setIsCompareModalOpen,
+        compareToastMessage,
+        clearCompareToastMessage,
         totalAmount,
         subtotalAmount,
         itemCount,
