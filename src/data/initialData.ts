@@ -3,12 +3,12 @@ import { Product, Category, Brand, Pack, StoreContact, Order } from '../types';
 export const INITIAL_CONTACT: StoreContact = {
   name: "ELECTRO_FENNASSA",
   email: "Electro_Fennassa@proton.me",
-  phone: "+212644543909",
-  whatsapp: "+212644543909",
-  address: "BD la Résistance, Hay Jdid",
-  city: "Taourirt",
+  phone: "+212 665-657310",
+  whatsapp: "+212 665-657310",
+  address: "BD LA RÉSISTANCE HAY JDID",
+  city: "TAOURIRT",
   country: "Maroc",
-  googleMapsUrl: "https://maps.google.com/?q=Taourirt+Hay+Jdid",
+  googleMapsUrl: "https://maps.google.com/?q=BD+LA+RESISTANCE+HAY+JDID+TAOURIRT",
   hours: "Lun - Sam: 09:00 - 21:00 | Dim: Sur rendez-vous"
 };
 

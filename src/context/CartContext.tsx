@@ -75,8 +75,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [storeContact, setStoreContact] = useState<StoreContact>(() => {
-    const saved = localStorage.getItem('ef_store_contact');
-    return saved ? JSON.parse(saved) : INITIAL_CONTACT;
+    const saved = localStorage.getItem('ef_store_contact_v2');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.phone && parsed.phone.includes('665-657310')) {
+          return parsed;
+        }
+      } catch (e) {
+        // fallback
+      }
+    }
+    return INITIAL_CONTACT;
   });
 
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -118,7 +128,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [orders]);
 
   useEffect(() => {
-    localStorage.setItem('ef_store_contact', JSON.stringify(storeContact));
+    localStorage.setItem('ef_store_contact_v2', JSON.stringify(storeContact));
   }, [storeContact]);
 
   useEffect(() => {

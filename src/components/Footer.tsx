@@ -4,19 +4,14 @@ import {
   Mail, 
   MapPin, 
   Clock, 
-  Download, 
   ShieldCheck, 
   Truck, 
   CreditCard, 
-  Code2, 
-  Terminal,
-  ExternalLink,
   MessageCircle,
   PackageCheck,
   Tag
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import { downloadProjectZip } from '../utils/projectZip';
 
 interface FooterProps {
   setCurrentView: (view: string) => void;
@@ -156,10 +151,10 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
           </ul>
         </div>
 
-        {/* Store Contact & Android/Termux Download */}
+        {/* Store Contact */}
         <div className="space-y-4">
           <h4 className="text-white font-bold text-sm uppercase tracking-wider border-l-2 border-red-600 pl-2">
-            Magasin & Développeur
+            Magasin & Contact
           </h4>
           <div className="space-y-2.5 text-xs text-slate-300">
             <div className="flex items-start gap-2">
@@ -175,29 +170,15 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentView }) => {
               <a href={`mailto:${storeContact.email}`} className="hover:text-white">{storeContact.email}</a>
             </div>
           </div>
-
-          {/* Android / Termux Zip Download Button */}
-          <div className="pt-2 border-t border-slate-800">
-            <button
-              onClick={downloadProjectZip}
-              className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-red-400 border border-slate-700 hover:border-red-500/50 text-xs font-bold py-2.5 px-3 rounded-lg transition-all"
-            >
-              <Download className="w-4 h-4" />
-              <span>Télécharger le Projet (.ZIP pour Termux/Acode)</span>
-            </button>
-          </div>
         </div>
       </div>
 
-      {/* Bottom Legal & Developer Notice */}
+      {/* Bottom Legal Notice */}
       <div className="border-t border-slate-800/80 bg-slate-950 py-4 px-4 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
           <p>© 2026 ELECTRO_FENNASSA. Tous droits réservés. Taourirt, Maroc.</p>
-          <div className="flex items-center gap-3">
-            <button onClick={() => setCurrentView('docs')} className="hover:text-slate-300 underline flex items-center gap-1">
-              <Terminal className="w-3.5 h-3.5 text-sky-400" />
-              Doc Android / Termux / Vercel
-            </button>
+          <div className="flex items-center gap-3 text-slate-400">
+            <span>Électroménager & Ameublement de Qualité</span>
           </div>
         </div>
       </div>
