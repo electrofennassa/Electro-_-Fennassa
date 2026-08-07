@@ -43,31 +43,31 @@ export const HomePage: React.FC<HomePageProps> = ({
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-zinc-900 to-slate-950 text-white py-16 md:py-24 px-4 sm:px-8 rounded-3xl mx-4 mt-4 border border-slate-800 shadow-2xl">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-zinc-900 to-slate-950 text-white py-10 sm:py-16 md:py-24 px-4 sm:px-8 rounded-2xl sm:rounded-3xl mx-2 sm:mx-4 mt-2 sm:mt-4 border border-slate-800 shadow-2xl">
         {/* Subtle decorative glow & grid background */}
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-10 w-80 h-80 bg-rose-600/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem]" />
         
-        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-600/15 border border-red-500/30 text-red-400 text-xs font-black uppercase tracking-wider shadow-inner">
-              <Sparkles className="w-3.5 h-3.5 text-red-400" />
-              <span>Leader Électroménager & Ameublement Taourirt</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-red-600/15 border border-red-500/30 text-red-400 text-[11px] sm:text-xs font-black uppercase tracking-wider shadow-inner max-w-full truncate">
+              <Sparkles className="w-3.5 h-3.5 text-red-400 shrink-0" />
+              <span className="truncate">Leader Électroménager & Ameublement Taourirt</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+            <h1 className="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
               Équipez Votre Maison au <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-300 to-red-600">Meilleur Prix</span> au Maroc
             </h1>
 
-            <p className="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed font-normal">
+            <p className="text-slate-300 text-xs sm:text-base max-w-2xl leading-relaxed font-normal">
               Réfrigérateurs NoFrost, Lave-linge Inverter, Smart TV 4K, Climatiseurs et Literie de Luxe. Profitez de nos offres spéciales, livraison rapide et du paiement à la livraison après contrôle.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-2">
               <button
                 onClick={() => setCurrentView('shop')}
-                className="bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm px-6 py-3.5 rounded-2xl shadow-xl shadow-red-600/30 flex items-center gap-2 transition-all hover:scale-105 active:scale-95"
+                className="bg-red-600 hover:bg-red-700 text-white font-extrabold text-xs sm:text-sm px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl shadow-xl shadow-red-600/30 flex items-center gap-2 transition-all hover:scale-105 active:scale-95"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Voir le Catalogue</span>
@@ -75,7 +75,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
               <button
                 onClick={() => setCurrentView('packs')}
-                className="bg-zinc-900 hover:bg-zinc-800 text-white font-extrabold text-sm px-6 py-3.5 rounded-2xl shadow-xl flex items-center gap-2 transition-all hover:scale-105 active:scale-95 border border-zinc-700"
+                className="bg-zinc-900 hover:bg-zinc-800 text-white font-extrabold text-xs sm:text-sm px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl shadow-xl flex items-center gap-2 transition-all hover:scale-105 active:scale-95 border border-zinc-700"
               >
                 <Zap className="w-4 h-4 text-red-500 fill-red-500" />
                 <span>Packs Spéciaux (-20%)</span>
@@ -85,7 +85,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 href={`https://wa.me/${storeContact.whatsapp.replace(/[^0-9]/g, '')}?text=Bonjour%20ELECTRO_FENNASSA,%20je%20souhaite%20obtenir%20des%20informations`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-5 py-3.5 rounded-2xl shadow-lg shadow-emerald-600/20 flex items-center gap-2 transition-all hover:scale-105"
+                className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl shadow-lg shadow-emerald-600/20 flex items-center gap-2 transition-all hover:scale-105"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Commander sur WhatsApp</span>
@@ -93,7 +93,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             {/* Micro Specs Bar */}
-            <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 text-xs text-slate-400">
+            <div className="pt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 border-t border-slate-800/80 text-xs text-slate-400">
               <div className="space-y-0.5">
                 <span className="text-white font-black text-lg flex items-center gap-1">
                   100%
@@ -243,7 +243,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 setSelectedCategory(cat.id);
                 setCurrentView('shop');
               }}
-              className="group relative bg-slate-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-md hover:shadow-2xl hover:border-red-600/50 transition-all cursor-pointer flex flex-col aspect-4/3 sm:aspect-square"
+              className="group relative bg-slate-900 rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-md hover:shadow-2xl hover:border-red-600/50 transition-all cursor-pointer flex flex-col aspect-[4/3] sm:aspect-square"
             >
               <img
                 src={cat.image}

@@ -65,33 +65,33 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors">
       {/* Top Banner Bar with Contact & Address info */}
-      <div className="bg-slate-950 text-slate-300 py-2 px-3 sm:px-6 text-xs border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-          <div className="flex items-center gap-4 sm:gap-6 text-[11px] sm:text-xs">
-            <span className="flex items-center gap-1.5 text-slate-300 font-medium">
+      <div className="bg-slate-950 text-slate-300 py-2 px-3 sm:px-6 text-xs border-b border-slate-800 overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 sm:gap-6 text-[11px] sm:text-xs">
+            <span className="flex items-center gap-1.5 text-slate-300 font-medium max-w-[260px] sm:max-w-none truncate">
               <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
-              <span>{storeContact.address}, {storeContact.city}</span>
+              <span className="truncate">{storeContact.address}, {storeContact.city}</span>
             </span>
-            <span className="hidden md:inline text-slate-700">|</span>
-            <a href={`tel:${storeContact.phone}`} className="flex items-center gap-1.5 hover:text-white font-medium transition-colors">
+            <span className="hidden sm:inline text-slate-700">|</span>
+            <a href={`tel:${storeContact.phone}`} className="flex items-center gap-1.5 hover:text-white font-medium transition-colors shrink-0">
               <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <span>{storeContact.phone}</span>
             </a>
             <span className="hidden lg:inline text-slate-700">|</span>
-            <a href={`mailto:${storeContact.email}`} className="hidden lg:flex items-center gap-1.5 hover:text-white transition-colors">
+            <a href={`mailto:${storeContact.email}`} className="hidden lg:flex items-center gap-1.5 hover:text-white transition-colors shrink-0">
               <Mail className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-              <span>{storeContact.email}</span>
+              <span className="truncate">{storeContact.email}</span>
             </a>
           </div>
 
-          <div className="flex items-center gap-3 text-[11px] sm:text-xs">
+          <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs shrink-0">
             <a
               href={`https://wa.me/${storeContact.whatsapp.replace(/[^0-9]/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/30 font-semibold flex items-center gap-1.5 transition-colors"
+              className="bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 px-2.5 py-0.5 rounded-full border border-emerald-500/30 font-semibold flex items-center gap-1.5 transition-colors"
             >
-              <MessageCircle className="w-3.5 h-3.5" />
+              <MessageCircle className="w-3.5 h-3.5 shrink-0" />
               <span>WhatsApp: {storeContact.phone}</span>
             </a>
             <span className="hidden sm:inline-block text-slate-400 text-[11px] font-medium">
@@ -102,21 +102,21 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Main Header Container */}
-      <div className="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3.5 flex items-center justify-between gap-2 sm:gap-4 overflow-hidden">
         {/* Brand Logo */}
         <button
           onClick={() => setCurrentView('home')}
-          className="flex items-center gap-3 text-left focus:outline-none group shrink-0"
+          className="flex items-center gap-2 sm:gap-3 text-left focus:outline-none group shrink-0 min-w-0"
         >
-          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white font-black text-lg sm:text-xl shadow-lg shadow-red-600/20 group-hover:scale-105 transition-transform">
+          <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white font-black text-base sm:text-xl shadow-lg shadow-red-600/20 group-hover:scale-105 transition-transform shrink-0">
             EF
           </div>
-          <div className="flex flex-col">
-            <div className="text-lg sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5 leading-none">
+          <div className="flex flex-col min-w-0">
+            <div className="text-base sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-1 leading-none">
               <span>ELECTRO</span>
               <span className="text-red-600 dark:text-red-500">FENNASSA</span>
             </div>
-            <span className="text-[10px] sm:text-[11px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 mt-1">
+            <span className="text-[9px] sm:text-[11px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 mt-0.5 truncate">
               Électroménager & Literie • Taourirt
             </span>
           </div>

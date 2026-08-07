@@ -65,7 +65,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     >
       {/* Product Image Area */}
       <div 
-        className="relative aspect-4/3 w-full bg-slate-100 dark:bg-slate-900/60 overflow-hidden"
+        className="relative aspect-[4/3] w-full bg-slate-100 dark:bg-slate-900/60 overflow-hidden"
         onMouseEnter={() => setHoveredImage(true)}
         onMouseLeave={() => setHoveredImage(false)}
       >
