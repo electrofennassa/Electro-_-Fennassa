@@ -13,7 +13,8 @@ import {
   MapPin, 
   Sparkles,
   ShieldCheck,
-  Tag
+  Tag,
+  MessageCircle
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
@@ -64,96 +65,105 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors">
       {/* Top Banner Bar with Contact & Address info */}
-      <div className="bg-slate-950 text-slate-200 py-1.5 px-3 sm:px-4 text-xs font-medium border-b border-slate-800 overflow-hidden">
+      <div className="bg-slate-950 text-slate-300 py-2 px-3 sm:px-6 text-xs border-b border-slate-800">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-          <div className="flex items-center gap-2 sm:gap-4 flex-wrap text-[11px] sm:text-xs">
-            <span className="flex items-center gap-1.5 text-amber-400 font-bold truncate">
-              <MapPin className="w-3.5 h-3.5 shrink-0 text-red-500" />
+          <div className="flex items-center gap-4 sm:gap-6 text-[11px] sm:text-xs">
+            <span className="flex items-center gap-1.5 text-slate-300 font-medium">
+              <MapPin className="w-3.5 h-3.5 text-red-500 shrink-0" />
               <span>{storeContact.address}, {storeContact.city}</span>
             </span>
-            <span className="hidden md:inline-block text-slate-700">|</span>
-            <a href={`tel:${storeContact.phone}`} className="flex items-center gap-1.5 hover:text-white font-semibold transition-colors">
+            <span className="hidden md:inline text-slate-700">|</span>
+            <a href={`tel:${storeContact.phone}`} className="flex items-center gap-1.5 hover:text-white font-medium transition-colors">
               <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <span>{storeContact.phone}</span>
             </a>
-            <span className="hidden md:inline-block text-slate-700">|</span>
+            <span className="hidden lg:inline text-slate-700">|</span>
             <a href={`mailto:${storeContact.email}`} className="hidden lg:flex items-center gap-1.5 hover:text-white transition-colors">
               <Mail className="w-3.5 h-3.5 text-sky-400 shrink-0" />
               <span>{storeContact.email}</span>
             </a>
           </div>
 
-          <div className="flex items-center gap-2 text-[11px] sm:text-xs">
+          <div className="flex items-center gap-3 text-[11px] sm:text-xs">
             <a
               href={`https://wa.me/${storeContact.whatsapp.replace(/[^0-9]/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 px-2.5 py-0.5 rounded-full border border-emerald-500/40 font-bold flex items-center gap-1.5 transition-colors"
+              className="bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/30 font-semibold flex items-center gap-1.5 transition-colors"
             >
-              <Sparkles className="w-3 h-3 text-emerald-300" />
+              <MessageCircle className="w-3.5 h-3.5" />
               <span>WhatsApp: {storeContact.phone}</span>
             </a>
-            <span className="hidden sm:inline-block bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700 font-semibold">
-              Paiement à la Livraison
+            <span className="hidden sm:inline-block text-slate-400 text-[11px] font-medium">
+              • Paiement à la livraison
             </span>
           </div>
         </div>
       </div>
 
       {/* Main Header Container */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 flex items-center justify-between gap-2 sm:gap-4 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <button
           onClick={() => setCurrentView('home')}
-          className="flex items-center gap-2 sm:gap-2.5 text-left focus:outline-none group shrink-0"
+          className="flex items-center gap-3 text-left focus:outline-none group shrink-0"
         >
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-red-600 via-rose-600 to-red-700 flex items-center justify-center text-white font-black text-base sm:text-xl shadow-md shadow-red-600/30 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-white font-black text-lg sm:text-xl shadow-lg shadow-red-600/20 group-hover:scale-105 transition-transform">
             EF
           </div>
-          <div>
-            <h1 className="text-base sm:text-xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-1">
-              ELECTRO<span className="text-red-600 dark:text-red-500 font-black">_FENNASSA</span>
-            </h1>
-            <p className="text-[9px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400 hidden xs:block">
-              Électroménager & Ameublement
-            </p>
+          <div className="flex flex-col">
+            <div className="text-lg sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5 leading-none">
+              <span>ELECTRO</span>
+              <span className="text-red-600 dark:text-red-500">FENNASSA</span>
+            </div>
+            <span className="text-[10px] sm:text-[11px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 mt-1">
+              Électroménager & Literie • Taourirt
+            </span>
           </div>
         </button>
 
-        {/* Desktop Instant Search Bar */}
+        {/* Desktop Search Bar */}
         <form 
           onSubmit={handleSearchSubmit}
-          className="hidden md:flex items-center flex-1 max-w-md relative"
+          className="hidden md:flex items-center flex-1 max-w-lg relative"
         >
-          <input
-            type="text"
-            placeholder="Rechercher produit, matelas, marque (ex: Samsung, LG, Daiko)..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setSearchFocused(true)}
-            onBlur={() => setSearchFocused(false)}
-            className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-full pl-10 pr-10 py-2 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-red-500/50 transition-all"
-          />
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
-          {searchQuery && (
+          <div className="relative w-full flex items-center">
+            <input
+              type="text"
+              placeholder="Rechercher un produit, marque (Samsung, LG, Daiko...)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setSearchFocused(true)}
+              onBlur={() => setSearchFocused(false)}
+              className="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-24 py-2.5 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:bg-white dark:focus:bg-slate-900 transition-all shadow-inner"
+            />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5" />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery('')}
+                className="absolute right-20 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
             <button
-              type="button"
-              onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-2.5 text-xs text-slate-400 hover:text-slate-600"
+              type="submit"
+              className="absolute right-1 px-4 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-colors"
             >
-              <X className="w-4 h-4" />
+              Chercher
             </button>
-          )}
+          </div>
         </form>
 
         {/* Right Action Controls */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="p-2.5 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
-            title={theme === 'light' ? 'Activer le mode sombre' : 'Activer le mode clair'}
+            className="p-2.5 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+            title={theme === 'light' ? 'Mode Sombre' : 'Mode Clair'}
           >
             {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5 text-amber-400" />}
           </button>
@@ -161,8 +171,8 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Wishlist Button */}
           <button
             onClick={() => setCurrentView('account')}
-            className="relative p-2.5 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
-            title="Mes favoris"
+            className="relative p-2.5 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
+            title="Mes Favoris"
           >
             <Heart className="w-5 h-5" />
             {wishlist.length > 0 && (
@@ -172,63 +182,46 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
 
-          {/* Cart Drawer Trigger */}
+          {/* Cart Button */}
           <button
             onClick={() => setCurrentView('cart')}
-            className="relative p-2.5 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
+            className="flex items-center gap-2 px-3 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-xl transition-colors relative border border-slate-200 dark:border-slate-700"
             title="Mon Panier"
           >
-            <ShoppingBag className="w-5 h-5" />
-            {itemCount > 0 && (
-              <span className="absolute top-1 right-1 bg-red-600 text-white text-[10px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center animate-pulse">
-                {itemCount}
-              </span>
-            )}
+            <div className="relative">
+              <ShoppingBag className="w-5 h-5 text-red-600" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-pulse">
+                  {itemCount}
+                </span>
+              )}
+            </div>
+            <span className="hidden sm:inline-block text-xs font-bold">Panier</span>
           </button>
 
-          {/* User Account / Admin Badge (Desktop) */}
+          {/* User Account / Admin Badge */}
           {user ? (
-            <div className="hidden sm:flex items-center gap-2">
-              <button
-                onClick={() => setCurrentView(isAdmin ? 'admin' : 'account')}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold rounded-full border border-slate-300 dark:border-slate-700 transition-colors"
-              >
-                <UserIcon className="w-4 h-4 text-red-600" />
-                <span className="max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
-                {isAdmin && (
-                  <span className="bg-red-600 text-white text-[9px] uppercase px-1.5 py-0.5 rounded font-black">
-                    ADMIN
-                  </span>
-                )}
-              </button>
-            </div>
+            <button
+              onClick={() => setCurrentView(isAdmin ? 'admin' : 'account')}
+              className="flex items-center gap-2 px-3 py-2 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold rounded-xl hover:bg-red-600 dark:hover:bg-red-600 dark:hover:text-white transition-all shadow-sm"
+            >
+              <UserIcon className="w-4 h-4" />
+              <span className="hidden sm:inline max-w-[110px] truncate">{user.name.split(' ')[0]}</span>
+              {isAdmin && (
+                <span className="bg-red-600 text-white text-[9px] uppercase px-1.5 py-0.5 rounded font-black">
+                  ADMIN
+                </span>
+              )}
+            </button>
           ) : (
             <button
               onClick={onOpenLoginModal}
-              className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-950 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold rounded-full hover:bg-red-600 dark:hover:bg-red-600 dark:hover:text-white transition-all shadow-sm"
+              className="flex items-center gap-1.5 px-3.5 py-2 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold rounded-xl hover:bg-red-600 dark:hover:bg-red-600 dark:hover:text-white transition-all shadow-sm"
             >
-              <UserIcon className="w-3.5 h-3.5" />
-              <span>Connexion</span>
+              <UserIcon className="w-4 h-4" />
+              <span className="hidden sm:inline">Mon Compte</span>
             </button>
           )}
-
-          {/* User Icon Button for Mobile (Compact) */}
-          <button
-            onClick={() => {
-              if (user) {
-                setCurrentView(isAdmin ? 'admin' : 'account');
-              } else {
-                onOpenLoginModal();
-              }
-            }}
-            className="sm:hidden p-2 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors relative"
-            title={user ? (isAdmin ? 'Administration' : 'Mon Compte') : 'Connexion'}
-          >
-            <UserIcon className="w-5 h-5 text-red-600" />
-            {isAdmin && (
-              <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-600 rounded-full border-2 border-white dark:border-slate-900 animate-ping" />
-            )}
-          </button>
 
           {/* Mobile Menu Toggle Button */}
           <button
